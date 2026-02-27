@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation.AspNetCore" Version="9.0.1" />
+    <PackageReference Include="Mapster.EFCore" Version="5.1.1" />
+    <PackageReference Include="MediatR" Version="9.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CRM.Core\DemoCRM.Core.csproj" />
+    <ProjectReference Include="..\DemoCRM.Persistance\DemoCRM.Persistance.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="useCases\Course\DeleteCourse\" />
+    <Folder Include="useCases\Course\UpdateCourse\" />
+  </ItemGroup>
+
+</Project>
