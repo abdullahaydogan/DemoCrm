@@ -2,7 +2,7 @@
 {
     public static class SearchStringExtensions
     {
-                /// <summary>
+         /// <summary>
         /// Normalizes Turkish characters and converts string to upper-case
         /// for search and comparison purposes.
         /// </summary>

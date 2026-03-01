@@ -23,21 +23,23 @@ namespace CRM.Application.useCases.Student.CreateStudent
 
                 if (exists)
                 {
-                    throw new ApplicationException(
-                        $"{ExCodes.StudentAlreadyExists} - {ExMessages.StudentAlreadyExists}"
-                    );
+                    throw new ApplicationException($"{ExCodes.StudentAlreadyExists} - {ExMessages.StudentAlreadyExists}");
                 }
             }
 
-            var student = request.Adapt<DemoCRM.Core.Entity.Student>();
-
-            student.Courses = new List<DemoCRM.Core.Entity.Course>();
-
-            if (request.CourseIds != null && request.CourseIds.Any())
+            var student = new DemoCRM.Core.Entity.Student
             {
-                var courses = await _crmContext.Courses
-                    .Where(c => request.CourseIds.Contains(c.Id))
-                    .ToListAsync(cancellationToken);
+                Name = request.Name,
+                Surname = request.Surname,
+                Email = request.Email,
+                DateOfBirth = request.DateOfBirth,
+                CreatedDate = DateTime.UtcNow,
+                IsActive = true
+            };
+
+            if (request.CourseIds != null && request.CourseIds.Count > 0)
+            {
+                var courses = await _crmContext.Courses.Where(c => request.CourseIds.Contains(c.Id)).ToListAsync(cancellationToken);
 
                 foreach (var course in courses)
                 {
@@ -45,11 +47,9 @@ namespace CRM.Application.useCases.Student.CreateStudent
                 }
             }
 
-            // 4️⃣ Persist
             await _crmContext.Students.AddAsync(student, cancellationToken);
             await _crmContext.SaveChangesAsync(cancellationToken);
 
-            // 5️⃣ Response
             return student.Adapt<CreateStudentResponse>();
         }
 

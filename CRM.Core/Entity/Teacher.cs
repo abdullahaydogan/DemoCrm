@@ -11,5 +11,6 @@
         public string Email { get; set; }
         public string? ContactValue { get; set; }
         public string Branch { get; set; }
+        public ICollection<Course>? Courses { get; set; } = new List<Course>();
     }
 }

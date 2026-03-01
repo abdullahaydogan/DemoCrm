@@ -9,5 +9,6 @@ namespace DemoCRM.Application.useCases.Course.CreateCourse
         public decimal Price { get; set; }
         public bool IsActive { get; set; }
         public List<int>? StudentIds { get; set; }
+        public List<int>? TeacherIds { get; set; }
     }
 }

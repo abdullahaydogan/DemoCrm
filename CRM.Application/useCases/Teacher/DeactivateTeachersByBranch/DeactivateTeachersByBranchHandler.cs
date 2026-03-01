@@ -1,5 +1,4 @@
-﻿using DemoCRM.Core.Const;
-using DemoCRM.Persistance.Context;
+﻿using DemoCRM.Persistance.Context;
 using MediatR;
 
 namespace DemoCRM.Application.useCases.Teacher.DeactivateTeachersByBranch

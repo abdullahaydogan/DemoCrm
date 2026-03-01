@@ -15,7 +15,7 @@ namespace DemoCRM.Application.useCases.Teacher.GetAllTeacherEntity
 
         public Task<IQueryable<Core.Entity.Teacher>> Handle(GetAllTeacherEntityRequest request, CancellationToken cancellationToken)
         {
-            var query = _crmContext.Teachers.Where(t => t.IsActive.Equals(true)).AsNoTracking().AsQueryable();
+            var query = _crmContext.Teachers.Where(t => t.IsActive.Equals(true)).AsNoTracking().Include(t => t.Courses).AsQueryable();
             return Task.FromResult(query);
         }
     }

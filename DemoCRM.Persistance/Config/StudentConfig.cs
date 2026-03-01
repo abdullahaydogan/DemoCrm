@@ -14,7 +14,6 @@ namespace DemoCRM.Persistance.Config
             builder.Property(s => s.PhoneNumber).HasMaxLength(15);
             builder.Property(s => s.Email).HasMaxLength(100);
             builder.Property(s => s.DateOfBirth);
-
         }
     }
 }

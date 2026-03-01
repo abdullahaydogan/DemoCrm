@@ -43,6 +43,7 @@ namespace DemoCRM.Persistance.Config
 
             builder.HasIndex(x => x.Email)
                    .IsUnique();
+            builder.HasMany(t => t.Courses).WithMany(c => c.Teachers);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿namespace DemoCRM.Application.useCases.Teacher.SearchTeacher
+﻿using CourseEntity = DemoCRM.Core.Entity.Course;
+namespace DemoCRM.Application.useCases.Teacher.SearchTeacher
 {
     public class SearchTeacherResponse
     {
@@ -10,5 +11,7 @@
         public string? Email { get; set; }
         public string? ContactValue { get; set; }
         public string? Branch { get; set; }
+        public virtual CourseEntity? Courses { get; set; }
+
     }
 }

@@ -9,5 +9,7 @@ namespace DemoCRM.Application.useCases.Teacher.CreateTeacher
         public string Email { get; set; }
         public string Branch { get; set; }
         public string? ContactValue { get; set; }
+        public List<int>? CourseIds { get; set; }
+
     }
 }

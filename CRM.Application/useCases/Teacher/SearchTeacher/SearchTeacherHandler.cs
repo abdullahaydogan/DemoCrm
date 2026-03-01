@@ -1,6 +1,6 @@
-﻿using DemoCRM.Application.useCases.Student.GetAllStudentEntity;
-using DemoCRM.Persistance.Context;
+﻿using DemoCRM.Persistance.Context;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace DemoCRM.Application.useCases.Teacher.SearchTeacher
 {
@@ -15,7 +15,7 @@ namespace DemoCRM.Application.useCases.Teacher.SearchTeacher
 
         public Task<IQueryable<Core.Entity.Teacher>> Handle(SearchTeacherRequest request, CancellationToken cancellationToken)
         {
-            var query = _crmContext.Teachers.AsQueryable();
+            var query = _crmContext.Teachers.Where(t => t.IsActive.Equals(true)).Include(t => t.Courses).AsNoTracking().AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(request.Name))
             {

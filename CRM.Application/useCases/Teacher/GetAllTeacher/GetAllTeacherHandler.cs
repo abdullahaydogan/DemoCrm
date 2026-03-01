@@ -16,7 +16,8 @@ namespace DemoCRM.Application.useCases.Teacher.GetAllTeacher
 
         public async Task<List<GetAllTeacherResponse>> Handle(GetAllTeacherRequest request, CancellationToken cancellationToken)
         {
-            var teachers = await _crmContext.Teachers.Where(t => t.IsActive == true).AsNoTracking().ToListAsync(cancellationToken);
+            var teachers = await _crmContext.Teachers.Where(t => t.IsActive == true).AsNoTracking().Include(t => t.Courses).ToListAsync(cancellationToken);
+
             var response = teachers.Adapt<List<GetAllTeacherResponse>>();
 
             return response;

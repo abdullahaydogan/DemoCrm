@@ -28,6 +28,7 @@ builder.Services
     .AddType<StudentMutations>()
     .AddType<TeacherMutations>()
     .AddType<TeacherQueries>()
+    .AddType<CourseMutations>()
     .AddType<DateOnly>();
 
 var app = builder.Build();

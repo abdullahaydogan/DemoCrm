@@ -31,10 +31,19 @@ namespace DemoCRM.Application.useCases.Teacher.CreateTeacher
                 Branch = request.Branch,
                 ContactValue = request.ContactValue,
                 CreatedDate = DateTime.UtcNow,
-                IsActive = true,
+                IsActive = true,        
             };
 
-             _crmContext.Teachers.Add(teacher);
+            if(request.CourseIds != null && request.CourseIds.Count > 0)
+            {
+                var courses = await _crmContext.Courses.Where(c => request.CourseIds.Contains(c.Id)).ToListAsync();
+                foreach (var course in courses)
+                {
+                    course.Teachers.Add(teacher);
+                }
+            }
+
+            await _crmContext.Teachers.AddAsync(teacher);
             await _crmContext.SaveChangesAsync(cancellationToken);
 
             return teacher.Adapt<CreateTeacherResponse>();
